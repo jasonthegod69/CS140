@@ -7,10 +7,6 @@ if len(sys.argv)==1:
 inputfile = sys.argv[1]
 print(f"The input file is: {inputfile}")
 
-outputfile = "output.txt"
-if len(sys.argv)==3:
-    outputfile = sys.argv[2]
-
 file = open(inputfile, "r+")
 datastring = file.readlines()
 data = np.array([])
@@ -18,13 +14,7 @@ data = np.array([])
 for line in datastring:
     number = line.split("\n")[0]
     data = np.append(data, int(number))
-#print(data)
-
-# theList = np.arange(16)
-# np.random.shuffle(theList)
-# print(theList)
 theList = data
-# np.array([15, 10, 0, 8, 2, 3, 1, 9, 14, 4, 13, 5, 7, 11, 6, 12])
 print(f"The list is {theList}")
 
 def split(arr, l, r):
@@ -73,6 +63,19 @@ def merge(arr, l, m, r, lbi, lbn, rbi, rbn):
     print(f"bn and bi are: {bn,bi}")
     return(bn, bi)
 
-bestList = np.array([])
-print(split(theList, 0, len(theList)-1))
+bn, bi = split(theList, 0, len(theList)-1)
+bestList = theList[bi:(bi+bn)]
+print(bn, bi, bestList)
 
+outputfile = "output.txt"
+if len(sys.argv)==3:
+    outputfile = sys.argv[2]
+f = open(outputfile, "w+")
+f.write(str(bn))
+f.write("\n")
+f.write(str(bi))
+f.write("\n")
+for i in bestList:
+    f.write(str(int(i)))
+    f.write("\n")
+f.close()
