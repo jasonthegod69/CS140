@@ -1,3 +1,5 @@
+# This code is a part of the project by Boyuan(Jack) Chen and Brandon Mitchell.
+
 import numpy as np
 import sys
 
