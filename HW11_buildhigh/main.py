@@ -5,8 +5,9 @@
 # files.
 from toolkit import *
 
-# The input is by default input.txt. Please enter the values there.
-fName = "input.txt"
+#Prompts user to type in input file and output file.
+fName = input("Enter input file name: ")
+oName = input("Enter output file name: ")
 f = open(fName, 'r')
 numBlocks = int(f.readline())
 blockArray = []
@@ -55,7 +56,8 @@ print("\n Running... \n\n")
 print("Dynamic table: ")
 print(DP)
 
-
+# Using the trace back method described in toolkit, traces back the blocks that were
+# used to build the maximum height.
 max_height = max_DP(DP)
 trace_back = traceBack(max_height, DP)
 print()
@@ -71,14 +73,14 @@ blocks = []
 for i in trace_back:
   blocks.append(sorted_combs[i])
 print()
-o = open("output.txt", "w+")
+o = open(oFile, "w+")
 o.write(str(len(trace_back))+"\n")
 print("The tallest build is: ")
 for block in blocks:
   print(block)
   o.write(str(block[0])+" "+str(block[1])+ " " + str(block[2]))
   o.write("\n")
-print("You can also see it in the output.txt file")
+print("You can also see it in the output file")
 
 # Close the files
 o.close()
